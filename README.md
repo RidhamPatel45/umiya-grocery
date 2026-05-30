@@ -198,7 +198,7 @@ npm run test
 
 ## 👨‍💻 Author
 
-**Your Name** — SDE Intern  
+**Ridham Patel** — SDE Intern  
 Umiya Wholesale & Retail Hub
 
 ---
