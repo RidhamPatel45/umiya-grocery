@@ -1,7 +1,26 @@
+# Dependency directories
 node_modules/
-.env
-.env.local
-.next/
+
+# Build directories
 dist/
-coverage/
+
+# Env file containing credentials
+.env
+
+# Logs
+logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# IDE/OS files
+.DS_Store
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
