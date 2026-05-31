@@ -70,10 +70,10 @@ export const orderApi = {
 };
 
 export const adminApi = {
-  getDashboard: () => api.get('/admin/dashboard'),
-  getOrders: (params?: any) => api.get('/admin/orders', { params }),
-  updateOrderStatus: (id: string, status: string, note?: string) =>
-    api.put(`/admin/orders/${id}/status`, { status, note }),
+  getDashboard: () => api.get('/orders/metrics'),
+  getOrders: () => api.get('/orders/admin'),
+  updateOrderStatus: (id: string, status: string) =>
+    api.patch(`/orders/admin/${id}/status`, { orderStatus: status }),
   getUsers: () => api.get('/admin/users'),
 };
 

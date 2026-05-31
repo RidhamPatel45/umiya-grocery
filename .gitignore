@@ -3,6 +3,8 @@ node_modules/
 
 # Build directories
 dist/
+.next/
+frontend/.next/
 
 # Env file containing credentials
 .env
