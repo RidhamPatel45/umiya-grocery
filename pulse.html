@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Premium Pulses & Lentils - Umiya Wholesales and Retail Hub</title>
+  <meta name="description" content="Premium quality pulses, lentils, and dals at wholesale and retail prices. Fresh stock of toor dal, moong dal, chana dal, masoor dal and more in Ahmedabad, Gujarat.">
+  <meta name="keywords" content="pulses, lentils, dal, toor dal, moong dal, chana dal, masoor dal, wholesale pulses, Ahmedabad, Gujarat">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏪</text></svg>">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Premium Pulses & Lentils - Umiya Wholesales">
+  <meta property="og:description" content="Fresh and premium quality pulses at wholesale and retail prices">
+  <meta property="og:type" content="product.group">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProductGroup",
+    "name": "Premium Pulses & Lentils",
+    "description": "Fresh and premium quality pulses and lentils at wholesale and retail prices",
+    "brand": {
+      "@type": "Brand",
+      "name": "Umiya Wholesales and Retail Hub"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "INR",
+      "lowPrice": "50",
+      "highPrice": "500",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --primary-color: #b71c1c;
+      --secondary-color: #e53935;
+      --accent-color: #fbc02d;
+      --text-color: #333;
+      --bg-light: #fff8f8;
+      --card-bg: #ffebee;
+      --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.2);
+      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background-color: var(--bg-light);
+      line-height: 1.6;
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .content {
+      flex: 1;
+    }
+
+    .top {
+      background: var(--gradient);
+      color: white;
+      padding: 1rem clamp(1rem, 3vw, 1.5rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      opacity: 0.95;
+    }
+
+    .logo {
+      font-size: clamp(1.5rem, 4vw, 1.75rem);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .nav {
+      display: flex;
+      gap: clamp(1rem, 2vw, 1.5rem);
+      align-items: center;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s ease, transform 0.2s ease;
+      position: relative;
+    }
+
+    .nav a:hover,
+    .nav a:focus {
+      color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+
+    .nav a:focus {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 2px;
+    }
+
+    .nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: var(--accent-color);
+      transition: width 0.3s ease;
+    }
+
+    .nav a:hover::after,
+    .nav a:focus::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-toggle:hover {
+      transform: scale(1.2);
+    }
+
+    .breadcrumb {
+      background: rgba(0, 0, 0, 0.05);
+      padding: 1rem clamp(1rem, 3vw, 2rem);
+      font-size: 0.9rem;
+    }
+
+    .breadcrumb a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 2rem clamp(1rem, 3vw, 2rem);
+      background: linear-gradient(135deg, var(--card-bg), white);
+    }
+
+    .page-title {
+      color: var(--primary-color);
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-subtitle {
+      color: var(--text-color);
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .filter-section {
+      background: white;
+      padding: 1.5rem clamp(1rem, 3vw, 2rem);
+      margin: 1rem clamp(1rem, 3vw, 2rem);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      background: var(--card-bg);
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 30vw, 320px), 1fr));
+      gap: clamp(1.5rem, 3vw, 2rem);
+      padding: 0 clamp(1rem, 3vw, 2rem) 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .product-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--accent-color);
+      color: var(--primary-color);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .product-info {
+      padding: 1.5rem;
+    }
+
+    .product-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-description {
+      color: var(--text-color);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+
+    .product-features {
+      margin-bottom: 1rem;
+    }
+
+    .feature-tag {
+      display: inline-block;
+      background: var(--card-bg);
+      color: var(--primary-color);
+      padding: 0.25rem 0.5rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      margin: 0.2rem 0.3rem 0.2rem 0;
+      font-weight: 500;
+    }
+
+    .product-pricing {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .price-range {
+      font-weight: 700;
+      color: var(--secondary-color);
+      font-size: 1.1rem;
+    }
+
+    .unit {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      opacity: 0.7;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--card-bg);
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .contact-info {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 0.75rem 1.5rem;
+      margin: 0 clamp(1rem, 3vw, 2rem);
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: white;
+    }
+
+    .contact-info .phone {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--accent-color);
+    }
+
+    .business-hours {
+      margin-top: 0.25rem;
+      opacity: 0.9;
+    }
+
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 80px;
+      left: 20px;
+      background: #25d366;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      text-decoration: none;
+      box-shadow: var(--shadow);
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .info-section {
+      background: white;
+      margin: 2rem clamp(1rem, 3vw, 2rem);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .info-title {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .info-item {
+      padding: 1rem;
+      background: var(--card-bg);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .info-item h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .foot {
+      background: var(--gradient);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+
+    .footer-section h3 {
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .footer-section p, .footer-section a {
+      margin-bottom: 0.5rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    .footer-section a:hover {
+      color: var(--accent-color);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--secondary-color);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover,
+    .back-to-top:focus {
+      background-color: var(--accent-color);
+      color: var(--primary-color);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+        flex-direction: column;
+        background: var(--gradient);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        padding: 0.5rem 0;
+        box-shadow: var(--shadow);
+      }
+
+      .nav.show {
+        display: flex;
+        animation: slideIn 0.3s ease-in-out;
+      }
+
+      .nav a {
+        padding: 0.75rem;
+        font-size: 1.1rem;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .filter-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .filter-btn {
+        text-align: center;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      .product-actions {
+        flex-direction: column;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.25rem;
+      }
+
+      .page-title {
+        font-size: 1.5rem;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <!-- Header -->
+    <header class="top" role="banner">
+      <div class="logo">Umiya Wholesales and Retail Hub</div>
+      <div class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation">☰</div>
+      <nav class="nav" id="nav-menu" role="navigation">
+        <a href="index.html" aria-label="Home page">Home</a>
+        <a href="about.html" aria-label="About page">About</a>
+        <a href="contact.html" aria-label="Contact page">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Contact Info Banner -->
+    <div class="contact-info">
+      <div class="phone">📞 +91-98765-43210</div>
+      <div class="business-hours">🕒 Open: Mon-Sat 9:00 AM - 8:00 PM | 📍 Ahmedabad, Gujarat</div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a> / <span>Pulses & Lentils</span>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <h1 class="page-title">🌾 Premium Pulses & Lentils</h1>
+      <p class="page-subtitle">Fresh, high-quality pulses and lentils sourced directly from trusted farmers. Available in wholesale and retail quantities with the best prices in Ahmedabad.</p>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+      <button class="filter-btn active" onclick="filterProducts('all')" id="all">All Products</button>
+      <button class="filter-btn" onclick="filterProducts('dal')" id="dal">Popular Dals</button>
+      <button class="filter-btn" onclick="filterProducts('beans')" id="beans">Beans & Rajma</button>
+      <button class="filter-btn" onclick="filterProducts('chickpeas')" id="chickpeas">Chickpeas & Chana</button>
+      <button class="filter-btn" onclick="filterProducts('specialty')" id="specialty">Specialty Items</button>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-grid">
+      <!-- Toor Dal -->
+      <div class="product-card" data-category="dal">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=300&fit=crop" alt="Premium Toor Dal" loading="lazy" />
+          <div class="product-badge">Best Seller</div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Premium Toor Dal</h3>
+          <p class="product-description">High-quality yellow pigeon peas, perfect for daily cooking. Rich in protein and essential nutrients.</p>
+          <div class="product-features">
+            <span class="feature-tag">Fresh Stock</span>
+            <span class="feature-tag">Grade A</span>
+            <span class="feature-tag">Machine Clean</span>
+          </div>
+          <div class="product-pricing">
+            <span class="price-range">₹80 - ₹120</span>
+            <span class="unit">per kg</span>
+          </div>
+          <div class="product-actions">
+            <a href="tel:+919876543210" class="btn btn-primary">Call to Order</a>
+            <a href="https://wa.me/919876543210" class="btn btn-secondary">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Moong Dal -->
+      <div class="product-card" data-category="dal">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=400&h=300&fit=crop" alt="Fresh Moong Dal" loading="lazy" />
+          <div class="product-badge">Premium</div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Fresh Moong Dal</h3>
+          <p class="product-description">Split green gram with skin removed. Easy to digest and quick cooking, ideal for all age groups.</p>
+          <div class="product-features">
+            <span class="feature-tag">Easy Digest</span>
+            <span class="feature-tag">Quick Cook</span>
+            <span class="feature-tag">Natural</span>
+          </div>
+          <div class="product-pricing">
+            <span class="price-range">₹90 - ₹140</span>
+            <span class="unit">per kg</span>
+          </div>
+          <div class="product-actions">
+            <a href="tel:+919876543210" class="btn btn-primary">Call to Order</a>
+            <a href="https://wa.me/919876543210" class="btn btn-secondary">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chana Dal -->
+      <div class="product-card" data-category="chickpeas">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&h=300&fit=crop" alt="Premium Chana Dal" loading="lazy" />
+          <div class="product-badge">Popular</div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Premium Chana Dal</h3>
+          <p class="product-description">Split bengal gram, rich in protein and fiber. Perfect for traditional Indian dishes and snacks.</p>
+          <div class="product-features">
+            <span class="feature-tag">High Protein</span>
+            <span class="feature-tag">Rich Fiber</span>
+            <span class="feature-tag">Premium Grade</span>
+          </div>
+          <div class="product-pricing">
+            <span class="price-range">₹70 - ₹110</span>
+            <span class="unit">per kg</span>
+          </div>
+          <div class="product-actions">
+            <a href="tel:+919876543210" class="btn btn-primary">Call to Order</a>
+            <a href="https://wa.me/919876543210" class="btn btn-secondary">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Masoor Dal -->
+      <div class="product-card" data-category="dal">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1610450949065-1f2841536c88?w=400&h=300&fit=crop" alt="Fresh Masoor Dal" loading="lazy" />
+          <div class="product-badge">Healthy</div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Fresh Masoor Dal</h3>
+          <p class="product-description">Red lentils, packed with iron and protein. Quick cooking and highly nutritious for everyday meals.</p>
+          <div class="product-features">
+            <span class="feature-tag">Iron Rich</span>
+            <span class="feature-tag">Quick Cook</span>
+            <span class="feature-tag">Nutritious</span>
+          </div>
+          <div class="product-pricing">
+            <span class="price-range">₹75 - ₹115</span>
+            <span class="unit">per kg</span>
+          </div>
+          <div class="product-actions">
+            <a href="tel:+919876543210" class="btn btn-primary">Call to Order</a>
+            <a href="https://wa.me/919876543210" class="btn btn-secondary">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rajma -->
+      <div class="product-card" data-category="beans">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop" alt="Premium Rajma" loading="lazy" />
+          <div class="product-badge">Premium</div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Premium Rajma (Kidney Beans)</h3>
+          <p class="product-description">Large, premium quality kidney beans. Perfect for making delicious rajma curry and healthy salads.</p>
+          <div class="product-features">
+            <span class="feature-tag">Large Size</span>
+            <span class="feature-tag">Premium Quality</span>
+            <span class="feature-tag">Fresh Stock</span>
+          </div>
+          <div class="product-pricing">
+            <span class="price-range">₹120 - ₹180</span>
+            <span class="unit">per kg</span>
+          </div>
+          <div class="product-actions">
+            <a href="tel:+919876543210" class="btn btn-primary">Call to Order</a>
+            <a href="https://wa.me/919876543210" class="btn btn-secondary">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Whole Moong -->
+      <div class="product-card" data-category="specialty">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1585503418537-88331351ad99?w=400&h=300&fit=crop" alt="Whole Green Moong" loading="lazy" />
+          <div class="product-badge">Organic</div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Whole Green Moong</h3>
+          <p class="product-description">Whole green gram with skin intact. Rich in nutrients and perfect for sprouting and healthy recipes.</p>
+          <div class="product-features">
+            <span class="feature-tag">Sprouting</span>
+            <span class="feature-tag">Whole Grain</span>
+            <span class="feature-tag">Nutrient Rich</span>
+          </div>
+          <div class="product-pricing">
+            <span class="price-range">₹85 - ₹130</span>
+            <span class="unit">per kg</span>
+          </div>
+          <div class="product-actions">
+            <a href="tel:+919876543210" class="btn btn-primary">Call to Order</a>
+            <a href="https://wa.me/919876543210" class="btn btn-secondary">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Black Gram -->
+      <div class="product-card" data-category="dal">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1606663889134-b936f25c5426?w=400&h=300&fit=crop" alt="Black Gram Urad Dal" loading="lazy" />
+          <div class="product-badge">Traditional</div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Black Gram (Urad Dal)</h3>
+          <p class="product-description">Premium black gram, essential for South Indian cuisine. Perfect for dosa, idli, and vada preparations.</p>
+          <div class="product-features">
+            <span class="feature-tag">South Indian</span>
+            <span class="feature-tag">Premium</span>
+            <span class="feature-tag">Traditional</span>
+          </div>
+          <div class="product-pricing">
+            <span class="price-range">₹95 - ₹150</span>
+            <span class="unit">per kg</span>
+          </div>
+          <div class="product-actions">
+            <a href="tel:+919876543210" class="btn btn-primary">Call to Order</a>
+            <a href="https://wa.me/919876543210" class="btn btn-secondary">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kabuli Chana -->
+      <div class="product-card" data-category="chickpeas">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=400&h=300&fit=crop" alt="Kabuli Chana Chickpeas" loading="lazy" />
+          <div class="product-badge">Export Quality</div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Kabuli Chana (Chickpeas)</h3>
+          <p class="product-description">Large, premium quality chickpeas. Perfect for chole, salads, and healthy snacking after boiling.</p>
+          <div class="product-features">
+            <span class="feature-tag">Large Size</span>
+            <span class="feature-tag">Export Quality</span>
+            <span class="feature-tag">Versatile</span>
+          </div>
+          <div class="product-pricing">
+            <span class="price-range">₹60 - ₹100</span>
+            <span class="unit">per kg</span>
+          </div>
+          <div class="product-actions">
+            <a href="tel:+919876543210" class="btn btn-primary">Call to Order</a>
+            <a href="https://wa.me/919876543210" class="btn btn-secondary">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Black Chana -->
+      <div class="product-card" data-category="chickpeas">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1571197119275-3b834764d7a0?w=400&h=300&fit=crop" alt="Black Chana" loading="lazy" />
+          <div class="product-badge">Healthy</div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Black Chana (Kala Chana)</h3>
+          <p class="product-description">Nutritious black chickpeas, rich in protein and fiber. Excellent for sprouting and traditional recipes.</p>
+          <div class="product-features">
+            <span class="feature-tag">High Fiber</span>
+            <span class="feature-tag">Sprouting</span>
+            <span class="feature-tag">Nutritious</span>
+          </div>
+          <div class="product-pricing">
+            <span class="price-range">₹55 - ₹85</span>
+            <span class="unit">per kg</span>
+          </div>
+          <div class="product-actions">
+            <a href="tel:+919876543210" class="btn btn-primary">Call to Order</a>
+            <a href="https://wa.me/919876543210" class="btn btn-secondary">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Information Section -->
+    <section class="info-section">
+      <h2 class="info-title">Why Choose Our Pulses & Lentils?</h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <h3>🌾 Farm Fresh Quality</h3>
+          <p>Sourced directly from trusted farmers across India, ensuring maximum freshness and quality.</p>
+        </div>
+        <div class="info-item">
+          <h3>🔍 Quality Assured</h3>
+          <p>Every batch is carefully inspected and cleaned using modern machinery for purity and hygiene.</p>
+        </div>
+        <div class="info-item">
+          <h3>💰 Best Prices</h3>
+          <p>Competitive wholesale and retail prices with special discounts for bulk orders and regular customers.</p>
+        </div>
+        <div class="info-item">
+          <h3>🚚 Fast Delivery</h3>
+          <p>Quick delivery across Ahmedabad and Gujarat with proper packaging to maintain freshness.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="foot">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contact Information</h3>
+        <p>📞 Phone: +91-98765-43210</p>
+        <p>📧 Email: info@umiyawholesales.com</p>
+        <p>📍 Address: Ahmedabad, Gujarat, India</p>
+        <p>🕒 Hours: Mon-Sat 9:00 AM - 8:00 PM</p>
+      </div>
+      <div class="footer-section">
+        <h3>Product Categories</h3>
+        <p><a href="#dal">Popular Dals</a></p>
+        <p><a href="#beans">Beans & Rajma</a></p>
+        <p><a href="#chickpeas">Chickpeas & Chana</a></p>
+        <p><a href="#specialty">Specialty Items</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Services</h3>
+        <p>Wholesale Supply</p>
+        <p>Retail Sales</p>
+        <p>Home Delivery</p>
+        <p>Bulk Orders</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quality Promise</h3>
+        <p>Fresh Stock Guarantee</p>
+        <p>Machine Cleaned Products</p>
+        <p>Premium Grade Selection</p>
+        <p>Competitive Pricing</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Umiya Wholesales and Retail Hub. All rights reserved. | Serving quality pulses and lentils across Gujarat</p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/919876543210" class="whatsapp-btn" title="Chat on WhatsApp">💬</a>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top" onclick="scrollToTop()" title="Back to top">↑</div>
+
+  <script>
+    // Toggle mobile menu
+    function toggleMenu() {
+      const nav = document.getElementById('nav-menu');
+      nav.classList.toggle('show');
+    }
+
+    // Filter products
+    function filterProducts(category) {
+      const cards = document.querySelectorAll('.product-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      // Remove active class from all buttons
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      });
+
+      // Add active class to clicked button
+      event.target.classList.add('active');
+      event.target.setAttribute('aria-pressed', 'true');
+
+      // Show/hide cards based on category
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+          card.style.animation = 'fadeIn 0.5s ease-in-out';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Back to top functionality
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Show/hide back to top button
+    window.addEventListener('scroll', function() {
+      const backToTop = document.querySelector('.back-to-top');
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const nav = document.getElementById('nav-menu');
+      const toggle = document.querySelector('.menu-toggle');
+
+      if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+        nav.classList.remove('show');
+      }
+    });
+
+    // Add smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // WhatsApp button with tracking and feedback
+    document.querySelector('.whatsapp-btn').addEventListener('click', function(e) {
+      // Track WhatsApp button clicks if analytics is available
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'click', {
+          'event_category': 'Contact',
+          'event_label': 'WhatsApp Button'
+        });
+      }
+
+      // Show a temporary message
+      const message = document.createElement('div');
+      message.textContent = 'Opening WhatsApp...';
+      message.style.cssText = `
+        position: fixed;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #25d366;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 20px;
+        z-index: 2000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        animation: fadeIn 0.3s ease-in-out;
+      `;
+      document.body.appendChild(message);
+
+      setTimeout(() => {
+        message.style.animation = 'fadeOut 0.3s ease-in-out';
+        setTimeout(() => {
+          document.body.removeChild(message);
+        }, 300);
+      }, 2000);
+    });
+
+    // Product action buttons with tracking
+    document.querySelectorAll('.product-actions .btn').forEach(button => {
+      button.addEventListener('click', function(e) {
+        const productCard = this.closest('.product-card');
+        const productName = productCard.querySelector('.product-name').textContent;
+        const actionType = this.classList.contains('btn-primary') ? 'Call' : 'WhatsApp';
+
+        // Track product interactions if analytics is available
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'click', {
+            'event_category': 'Product',
+            'event_label': `${actionType}: ${productName}`
+          });
+        }
+
+        // For WhatsApp buttons, pre-fill a message
+        if (actionType === 'WhatsApp') {
+          e.preventDefault();
+          const phoneNumber = '919876543210';
+          const message = encodeURIComponent(`Hello, I'm interested in purchasing ${productName}.`);
+          window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+        }
+      });
+    });
+
+    // Contact info phone number click tracking
+    document.querySelector('.contact-info .phone').addEventListener('click', function() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'click', {
+          'event_category': 'Contact',
+          'event_label': 'Phone Number'
+        });
+      }
+    });
+
+    // Initialize filter buttons for keyboard accessibility
+    document.querySelectorAll('.filter-btn').forEach(button => {
+      button.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    });
+
+    // Show/hide back to top button with improved performance
+    let lastScrollPosition = 0;
+    let ticking = false;
+
+    window.addEventListener('scroll', function() {
+      lastScrollPosition = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          updateBackToTopButton(lastScrollPosition);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    function updateBackToTopButton(scrollPosition) {
+      const backToTop = document.querySelector('.back-to-top');
+      if (scrollPosition > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    }
+
+    // Initialize the page with any hash-based filtering
+    window.addEventListener('DOMContentLoaded', function() {
+      const hash = window.location.hash.substring(1);
+      if (hash) {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+          if (button.id === hash) {
+            button.click();
+          }
+        });
+      }
+
+      // Add ARIA attributes for better accessibility
+      document.querySelectorAll('.filter-btn').forEach(button => {
+        button.setAttribute('role', 'button');
+        button.setAttribute('aria-pressed', 'false');
+      });
+
+      // Add loading state for external links
+      document.querySelectorAll('a[href^="http"]').forEach(link => {
+        if (link.hostname !== window.location.hostname) {
+          link.addEventListener('click', function() {
+            const originalText = link.textContent;
+            link.style.position = 'relative';
+
+            const loading = document.createElement('span');
+            loading.textContent = 'Loading...';
+            loading.style.cssText = `
+              position: absolute;
+              left: 100%;
+              margin-left: 5px;
+              color: var(--accent-color);
+              white-space: nowrap;
+            `;
+            link.appendChild(loading);
+
+            setTimeout(() => {
+              loading.remove();
+              link.style.position = '';
+            }, 3000);
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
