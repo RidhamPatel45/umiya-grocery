@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login / Register – Umiya Grocery</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏪</text></svg>">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    :root {
+      --red: #b71c1c; --red2: #e53935; --gold: #fbc02d;
+      --grad: linear-gradient(135deg, #b71c1c, #e53935);
+      --bg: #fff8f8; --card: #fff; --shadow: 0 8px 32px rgba(183,28,28,0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background: linear-gradient(135deg, #b71c1c22 0%, #fbc02d11 100%);
+      z-index: -1;
+    }
+
+    .page-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 900px;
+      width: 100%;
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    /* Left panel */
+    .brand-panel {
+      background: var(--grad);
+      color: white;
+      padding: 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+    .brand-panel .logo { font-size: 4rem; }
+    .brand-panel h1 { font-size: 1.75rem; font-weight: 800; }
+    .brand-panel p { opacity: 0.85; line-height: 1.7; font-size: 0.95rem; }
+    .brand-panel .features { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem; width: 100%; }
+    .feature-item {
+      background: rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Right panel – auth form */
+    .auth-panel { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+    .auth-panel h2 { font-size: 1.5rem; font-weight: 800; color: var(--red); margin-bottom: 0.5rem; }
+    .auth-panel .subtitle { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+    /* Role tabs */
+    .role-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      background: #f5f5f5;
+      padding: 0.4rem;
+      border-radius: 12px;
+    }
+    .role-tab {
+      padding: 0.6rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      background: transparent;
+      color: #666;
+    }
+    .role-tab.active {
+      background: var(--grad);
+      color: white;
+      box-shadow: 0 2px 8px rgba(183,28,28,0.3);
+    }
+
+    /* Mode tabs */
+    .mode-tabs {
+      display: flex;
+      border-bottom: 2px solid #f0f0f0;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+    }
+    .mode-tab {
+      padding: 0.5rem 0;
+      border: none;
+      background: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      color: #999;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s;
+    }
+    .mode-tab.active { color: var(--red); border-bottom-color: var(--red); }
+
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-weight: 600; font-size: 0.85rem; color: #444; margin-bottom: 0.4rem; }
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e8e8e8;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus { border-color: var(--red); }
+
+    .submit-btn {
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--grad);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(183,28,28,0.35); }
+    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .msg {
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.75rem;
+      display: none;
+    }
+    .msg.error { background: #ffebee; color: #b71c1c; display: block; }
+    .msg.success { background: #e8f5e9; color: #1b5e20; display: block; }
+
+    .back-home { display: block; text-align: center; margin-top: 1.25rem; color: var(--red); font-size: 0.9rem; text-decoration: none; font-weight: 500; }
+    .back-home:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .page-wrap { grid-template-columns: 1fr; }
+      .brand-panel { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <!-- Brand Side -->
+  <div class="brand-panel">
+    <div class="logo">🏪</div>
+    <h1>Umiya Wholesales</h1>
+    <p>Your trusted grocery &amp; household items store in Ahmedabad, Gujarat</p>
+    <div class="features">
+      <div class="feature-item">🛒 Add items to cart easily</div>
+      <div class="feature-item">📱 Send order via WhatsApp</div>
+      <div class="feature-item">🚀 Admin panel to manage products</div>
+      <div class="feature-item">⚡ Fresh stock every day</div>
+    </div>
+  </div>
+
+  <!-- Auth Side -->
+  <div class="auth-panel">
+    <h2 id="panel-title">Welcome Back</h2>
+    <p class="subtitle" id="panel-subtitle">Login to your account to continue shopping</p>
+
+    <!-- Role Tabs -->
+    <div class="role-tabs">
+      <button class="role-tab active" id="tab-user" onclick="switchRole('user')">👤 Customer</button>
+      <button class="role-tab" id="tab-admin" onclick="switchRole('admin')">🛠️ Admin</button>
+    </div>
+
+    <!-- Mode Tabs (Login / Register) - only for user -->
+    <div class="mode-tabs" id="mode-tabs">
+      <button class="mode-tab active" id="mode-login" onclick="switchMode('login')">Login</button>
+      <button class="mode-tab" id="mode-register" onclick="switchMode('register')">Register</button>
+    </div>
+
+    <!-- Form -->
+    <form id="auth-form" onsubmit="handleSubmit(event)">
+      <!-- Register only -->
+      <div class="form-group" id="field-name" style="display:none">
+        <label>Full Name</label>
+        <input type="text" id="inp-name" placeholder="Your full name"/>
+      </div>
+      <div class="form-group" id="field-phone" style="display:none">
+        <label>Phone Number</label>
+        <input type="tel" id="inp-phone" placeholder="10-digit mobile number"/>
+      </div>
+
+      <!-- Always shown -->
+      <div class="form-group">
+        <label id="loginid-label">Login ID</label>
+        <input type="text" id="inp-loginid" placeholder="Enter login ID" required/>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="inp-password" placeholder="Enter password" required/>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submit-btn">Login</button>
+    </form>
+
+    <div class="msg" id="msg-box"></div>
+    <a href="/" class="back-home">← Back to Shop</a>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script>
+  let currentRole = 'user';
+  let currentMode = 'login';
+
+  // If already logged in, redirect
+  if (Auth.isLoggedIn()) {
+    window.location.href = Auth.isAdmin() ? '/admin/' : '/';
+  }
+
+  function switchRole(role) {
+    currentRole = role;
+    document.getElementById('tab-user').classList.toggle('active', role === 'user');
+    document.getElementById('tab-admin').classList.toggle('active', role === 'admin');
+    document.getElementById('mode-tabs').style.display = role === 'admin' ? 'none' : 'flex';
+
+    if (role === 'admin') {
+      currentMode = 'login';
+      document.getElementById('panel-title').textContent = 'Admin Login';
+      document.getElementById('panel-subtitle').textContent = 'Login with admin credentials to manage products';
+      document.getElementById('loginid-label').textContent = 'Admin Login ID';
+      document.getElementById('inp-loginid').placeholder = 'admin';
+      document.getElementById('submit-btn').textContent = '🔐 Admin Login';
+      hideRegisterFields();
+    } else {
+      switchMode(currentMode);
+    }
+    clearMsg();
+  }
+
+  function switchMode(mode) {
+    currentMode = mode;
+    document.getElementById('mode-login').classList.toggle('active', mode === 'login');
+    document.getElementById('mode-register').classList.toggle('active', mode === 'register');
+
+    if (mode === 'login') {
+      document.getElementById('panel-title').textContent = 'Welcome Back';
+      document.getElementById('panel-subtitle').textContent = 'Login to your account to continue shopping';
+      document.getElementById('submit-btn').textContent = 'Login →';
+      hideRegisterFields();
+    } else {
+      document.getElementById('panel-title').textContent = 'Create Account';
+      document.getElementById('panel-subtitle').textContent = 'Register to start shopping at Umiya';
+      document.getElementById('submit-btn').textContent = 'Create Account →';
+      showRegisterFields();
+    }
+    clearMsg();
+  }
+
+  function showRegisterFields() {
+    document.getElementById('field-name').style.display = 'block';
+    document.getElementById('field-phone').style.display = 'block';
+    document.getElementById('loginid-label').textContent = 'Choose a Login ID';
+    document.getElementById('inp-loginid').placeholder = 'e.g. rahul2024';
+  }
+
+  function hideRegisterFields() {
+    document.getElementById('field-name').style.display = 'none';
+    document.getElementById('field-phone').style.display = 'none';
+    document.getElementById('loginid-label').textContent = 'Login ID';
+    document.getElementById('inp-loginid').placeholder = 'Enter login ID';
+  }
+
+  function showMsg(text, type) {
+    const box = document.getElementById('msg-box');
+    box.textContent = text;
+    box.className = 'msg ' + type;
+  }
+
+  function clearMsg() {
+    const box = document.getElementById('msg-box');
+    box.className = 'msg';
+    box.textContent = '';
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Please wait...';
+    clearMsg();
+
+    const loginId = document.getElementById('inp-loginid').value.trim();
+    const password = document.getElementById('inp-password').value;
+
+    if (currentMode === 'register' && currentRole === 'user') {
+      const name = document.getElementById('inp-name').value.trim();
+      const phone = document.getElementById('inp-phone').value.trim();
+      if (!name) { showMsg('Please enter your name', 'error'); resetBtn(); return; }
+
+      const result = await AuthAPI.register({ name, phone, loginId, password });
+      if (result.ok) {
+        showMsg('✅ Account created! Please login now.', 'success');
+        setTimeout(() => switchMode('login'), 1500);
+      } else {
+        showMsg('❌ ' + result.error, 'error');
+      }
+    } else {
+      const result = await AuthAPI.login({ loginId, password });
+      if (result.ok) {
+        const { token, role, name, phone } = result.data;
+        Auth.save(token, { role, name, phone, loginId });
+        showMsg('✅ ' + result.data.message, 'success');
+
+        if (role === 'admin') {
+          setTimeout(() => window.location.href = '/admin/', 800);
+        } else {
+          setTimeout(() => window.location.href = '/', 800);
+        }
+      } else {
+        showMsg('❌ ' + result.error, 'error');
+      }
+    }
+    resetBtn();
+  }
+
+  function resetBtn() {
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = false;
+    if (currentRole === 'admin') btn.textContent = '🔐 Admin Login';
+    else if (currentMode === 'register') btn.textContent = 'Create Account →';
+    else btn.textContent = 'Login →';
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Umiya Wholesales and Retail Hub</title>
+  <style>
+    :root {
+      --primary-color: #b71c1c;
+      --secondary-color: #e53935;
+      --accent-color: #fbc02d;
+      --text-color: #333;
+      --bg-light: #fff8f8;
+      --card-bg: #ffebee;
+      --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.2);
+      --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background-color: var(--bg-light);
+      line-height: 1.6;
+      color: var(--text-color);
+    }
+
+    .top {
+      background: var(--gradient);
+      color: white;
+      padding: 1rem clamp(1rem, 3vw, 1.5rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      opacity: 0.95;
+    }
+
+    .logo {
+      font-size: clamp(1.5rem, 4vw, 1.75rem);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .nav {
+      display: flex;
+      gap: clamp(1rem, 2vw, 1.5rem);
+      align-items: center;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s ease, transform 0.2s ease;
+      position: relative;
+    }
+
+    .nav a:hover,
+    .nav a:focus {
+      color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+
+    .nav a:focus {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 2px;
+    }
+
+    .nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: var(--accent-color);
+      transition: width 0.3s ease;
+    }
+
+    .nav a:hover::after,
+    .nav a:focus::after {
+      width: 100%;
+    }
+
+    .shop-now {
+      background-color: var(--accent-color);
+      color: var(--primary-color);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .shop-now:hover,
+    .shop-now:focus {
+      background-color: white;
+      color: var(--secondary-color);
+    }
+
+    .search-toggle,
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .search-toggle:hover,
+    .menu-toggle:hover {
+      transform: scale(1.2);
+    }
+
+    .search-bar {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 1rem;
+      width: clamp(200px, 50vw, 300px);
+      padding: 0.5rem;
+      background: white;
+      border: 1px solid var(--primary-color);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 20px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search-bar.show {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .carousel {
+      position: relative;
+      max-width: 1400px;
+      margin: 1rem auto;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .carousel-items {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-item {
+      flex: 0 0 100%;
+      text-align: center;
+    }
+
+    .carousel-item a {
+      display: block;
+      text-decoration: none;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: clamp(200px, 30vw, 300px);
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .carousel-item .item-label {
+      padding: 0.75rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      background: rgba(255, 255, 255, 0.9);
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .carousel-controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .carousel-controls button {
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: background 0.3s ease;
+    }
+
+    .carousel-controls button:hover,
+    .carousel-controls button:focus {
+      background: var(--secondary-color);
+    }
+
+    .section-title {
+      text-align: center;
+      color: var(--primary-color);
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      font-weight: 700;
+      margin: clamp(1.5rem, 4vw, 2.5rem) 0 1.25rem;
+    }
+
+    .items-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(clamp(160px, 25vw, 200px), 1fr));
+      gap: clamp(1rem, 2vw, 1.5rem);
+      padding: 0 clamp(1rem, 3vw, 2rem) 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .item-box {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
+
+    .item-box:hover,
+    .item-box:focus-within {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .item-box img {
+      width: 100%;
+      height: clamp(120px, 25vw, 160px);
+      object-fit: cover;
+      border-radius: 12px 12px 0 0;
+      transition: transform 0.3s ease;
+      aspect-ratio: 4/3;
+      background: #eee;
+    }
+
+    .item-box img[loading="lazy"] {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .item-box:hover img,
+    .item-box:focus-within img {
+      transform: scale(1.05);
+    }
+
+    .item-box .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .item-box:hover .overlay,
+    .item-box:focus-within .overlay {
+      opacity: 1;
+    }
+
+    .item-box .overlay span {
+      color: white;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      background: var(--secondary-color);
+      border-radius: 20px;
+    }
+
+    .item-label {
+      padding: 0.75rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    }
+
+    .foot {
+      background: var(--gradient);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--secondary-color);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover,
+    .back-to-top:focus {
+      background-color: var(--accent-color);
+      color: var(--primary-color);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1024px) {
+      .nav .shop-now {
+        display: none;
+      }
+
+      .items-section {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+        flex-direction: column;
+        background: var(--gradient);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        padding: 0.5rem 0;
+        box-shadow: var(--shadow);
+      }
+
+      .nav.show {
+        display: flex;
+        animation: slideIn 0.3s ease-in-out;
+      }
+
+      .nav a {
+        padding: 0.75rem;
+        font-size: 1.1rem;
+      }
+
+      .search-toggle,
+      .menu-toggle {
+        display: block;
+      }
+
+      .search-bar {
+        width: 90%;
+        right: 5%;
+      }
+
+      .carousel-item img {
+        height: clamp(150px, 25vw, 200px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.25rem;
+      }
+
+      .section-title {
+        font-size: 1.25rem;
+      }
+
+      .item-label {
+        font-size: 0.9rem;
+      }
+
+      .items-section {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+    }
+
+    @media (min-width: 1600px) {
+      .items-section {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      .carousel-item img {
+        height: 350px;
+      }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="top" role="banner">
+    <div class="logo">Umiya Wholesales and Retail Hub</div>
+    <div class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation">☰</div>
+    <nav class="nav" id="nav-menu" role="navigation">
+      <a href="#" aria-label="Home page">Home</a>
+      <a href="#" aria-label="About page">About</a>
+      <a href="#" aria-label="Contact page">Contact</a>
+      <a href="#" class="shop-now" aria-label="Shop now">Shop Now</a>
+      <div class="search-toggle" onclick="toggleSearch()" aria-label="Toggle search">🔍</div>
+    </nav>
+    <div class="search-bar" id="search-bar">
+      <input type="text" placeholder="Search products..." aria-label="Search products" />
+    </div>
+  </header>
+
+  <!-- Seasonal Carousel -->
+  <div class="carousel" role="region" aria-label="Seasonal items carousel">
+    <div class="carousel-items" id="carousel-items">
+      <div class="carousel-item">
+        <a href="pulse.html" aria-label="View Pulses">
+          <img src="img/pulse.jpg" alt="Various pulses and lentils" loading="lazy" />
+          <div class="item-label">Pulses</div>
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="spices.html" aria-label="View Spices">
+          <img src="img/spices.jpg" alt="Assorted spices in containers" loading="lazy" />
+          <div class="item-label">Spices</div>
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="dryfruit.html" aria-label="View Dry Fruits">
+          <img src="img/dryfruit.jpg" alt="Assorted dry fruits including almonds and cashews" loading="lazy" />
+          <div class="item-label">Dry Fruits</div>
+        </a>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <button onclick="prevSlide()" aria-label="Previous slide">◄</button>
+      <button onclick="nextSlide()" aria-label="Next slide">►</button>
+    </div>
+  </div>
+
+  <!-- Bestsellers -->
+  <section class="section-title" aria-labelledby="bestsellers-title">
+    <h2 id="bestsellers-title">🔥 Bestsellers</h2>
+    <div class="items-section">
+      <a href="dryfruit.html" class="item-box" aria-label="View Dry Fruits">
+        <img src="img/dryfruit.jpg" alt="Assorted dry fruits including almonds and cashews" loading="lazy" />
+        <div class="item-label">Dry Fruits</div>
+        <div class="overlay"><span>View Details</span></div>
+      </a>
+      <a href="tea.html" class="item-box" aria-label="View Tea & Coffee">
+        <img src="img/tea.jpg" alt="Tea and coffee products" loading="lazy" />
+        <div class="item-label">Tea & Coffee</div>
+        <div class="overlay"><span>View Details</span></div>
+      </a>
+      <a href="spices.html" class="item-box" aria-label="View Spices">
+        <img src="img/spices.jpg" alt="Assorted spices in containers" loading="lazy" />
+        <div class="item-label">Spices</div>
+        <div class="overlay"><span>View Details</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Regular Items -->
+  <section class="section-title" aria-labelledby="grocery-title">
+    <h2 id="grocery-title">📦 Grocery Items</h2>
+    <div class="items-section">
+      <a href="pulse.html" class="item-box" aria-label="View Pulses">
+        <img src="img/pulse.jpg" alt="Various pulses and lentils" loading="lazy" />
+        <div class="item-label">Pulses</div>
+        <div class="overlay"><span>View Details</span></div>
+      </a>
+      <a href="flour.html" class="item-box" aria-label="View Flour">
+        <img src="img/flour.jpg" alt="Different types of flour" loading="lazy" />
+        <div class="item-label">Flour</div>
+        <div class="overlay"><span>View Details</span></div>
+      </a>
+      <a href="oil.html" class="item-box" aria-label="View Oil">
+        <img src="img/oil.jpg" alt="Cooking oils in bottles" loading="lazy" />
+        <div class="item-label">Oil</div>
+        <div class="overlay"><span>View Details</span></div>
+      </a>
+      <a href="personalhygiene.html" class="item-box" aria-label="View Personal Hygiene">
+        <img src="img/personalhygiene.jpg" alt="Personal hygiene products" loading="lazy" />
+        <div class="item-label">Personal Hygiene</div>
+        <div class="overlay"><span>View Details</span></div>
+      </a>
+      <a href="snacks.html" class="item-box" aria-label="View Snacks">
+        <img src="img/snacks.jpg" alt="Assorted snacks" loading="lazy" />
+        <div class="item-label">Snacks</div>
+        <div class="overlay"><span>View Details</span></div>
+      </a>
+      <a href="household.html" class="item-box" aria-label="View Household">
+        <img src="img/household.jpg" alt="Household cleaning products" loading="lazy" />
+        <div class="item-label">Household</div>
+        <div class="overlay"><span>View Details</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="foot" role="contentinfo">
+    © 2025 Umiya Wholesales and Retail Hub. All rights reserved.
+  </footer>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top" onclick="scrollToTop()" aria-label="Back to top">↑</div>
+
+  <!-- Scripts -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('nav-menu').classList.toggle('show');
+      document.getElementById('search-bar').classList.remove('show');
+    }
+
+    function toggleSearch() {
+      document.getElementById('search-bar').classList.toggle('show');
+      document.getElementById('nav-menu').classList.remove('show');
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('scroll', () => {
+      const backToTop = document.querySelector('.back-to-top');
+      if (window.scrollY > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-item');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+      const carouselItems = document.getElementById('carousel-items');
+      if (index >= totalSlides) currentSlide = 0;
+      if (index < 0) currentSlide = totalSlides - 1;
+      carouselItems.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    function nextSlide() {
+      currentSlide++;
+      showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide--;
+      showSlide(currentSlide);
+    }
+
+    // Auto-scroll carousel every 5 seconds
+    setInterval(nextSlide, 5000);
+
+    // Initialize carousel
+    showSlide(currentSlide);
+  </script>
+</body>
+</html>

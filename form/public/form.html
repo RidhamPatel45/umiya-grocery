@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Login/Register</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
+    input, button { width: 100%; padding: 10px; margin: 10px 0; }
+    #message { color: green; }
+  </style>
+</head>
+<body>
+  <h2 id="form-title">Register</h2>
+
+  <div id="register-fields">
+    <input type="text" id="name" placeholder="Name">
+    <input type="email" id="email" placeholder="Email">
+  </div>
+  <input type="text" id="loginId" placeholder="Login ID">
+  <input type="password" id="password" placeholder="Password">
+
+  <button onclick="submitForm()">Submit</button>
+  <p id="toggle" onclick="toggleMode()" style="color: blue; cursor: pointer;">Already registered? Login</p>
+  <p id="message"></p>
+
+  <script>
+    let isLogin = false;
+
+    function toggleMode() {
+      isLogin = !isLogin;
+      document.getElementById("form-title").textContent = isLogin ? "Login" : "Register";
+      document.getElementById("register-fields").style.display = isLogin ? "none" : "block";
+      document.getElementById("toggle").textContent = isLogin ? "Don't have an account? Register" : "Already registered? Login";
+      document.getElementById("message").textContent = "";
+    }
+
+  async function submitForm() {
+  const loginId = document.getElementById("loginId").value;
+  const password = document.getElementById("password").value;
+
+  if (isLogin) {
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ loginId, password })
+    });
+    const data = await res.json();
+    if (res.ok) {
+      window.location.href = "../../index.html"; // Redirect on success
+    } else {
+      document.getElementById("message").textContent = data.message;
+    }
+  } else {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+
+    const res = await fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, loginId, password })
+    });
+    const data = await res.json();
+    document.getElementById("message").textContent = data.message;
+  }
+}
+</script>
+</body>
+</html>

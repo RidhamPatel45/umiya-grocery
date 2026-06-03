@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart – Umiya Grocery</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    :root{--red:#b71c1c;--red2:#e53935;--gold:#fbc02d;--grad:linear-gradient(135deg,#b71c1c,#e53935);--text:#333;--bg:#fff8f8;--card:#fff;--shadow:0 4px 20px rgba(0,0,0,0.08)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+
+    /* Header */
+    .top{background:var(--grad);color:white;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000}
+    .logo{font-size:1.4rem;font-weight:800;text-decoration:none;color:white}
+    .nav{display:flex;gap:1rem;align-items:center}
+    .nav a{color:white;text-decoration:none;font-weight:500;font-size:0.9rem;transition:color 0.2s}
+    .nav a:hover{color:var(--gold)}
+    .cart-link{position:relative;font-size:1.3rem;text-decoration:none;color:white}
+    .cart-badge{position:absolute;top:-8px;right:-10px;background:var(--gold);color:#333;font-size:0.65rem;font-weight:800;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+
+    .contact-banner{background:var(--grad);color:white;text-align:center;padding:0.5rem;font-size:0.85rem;border-top:1px solid rgba(255,255,255,0.2)}
+    .contact-banner .phone{font-weight:700;color:var(--gold)}
+
+    /* Page */
+    .content{flex:1;max-width:1100px;margin:0 auto;padding:2rem 1.5rem;width:100%}
+    .page-title{font-size:1.8rem;font-weight:800;margin-bottom:1.5rem;color:var(--text)}
+    .page-title span{color:var(--red)}
+
+    .cart-layout{display:grid;grid-template-columns:1fr 360px;gap:1.5rem;align-items:start}
+
+    /* Cart Items */
+    .cart-items-card{background:var(--card);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+    .cart-items-header{padding:1.25rem 1.5rem;border-bottom:2px solid #f5f5f5;display:flex;justify-content:space-between;align-items:center}
+    .cart-items-title{font-weight:700;font-size:1rem}
+    .clear-btn{padding:0.4rem 0.9rem;background:#fff0f0;color:var(--red);border:none;border-radius:8px;cursor:pointer;font-size:0.82rem;font-weight:600;font-family:inherit;transition:all 0.2s}
+    .clear-btn:hover{background:var(--red);color:white}
+
+    .cart-item{display:flex;align-items:center;gap:1rem;padding:1rem 1.5rem;border-bottom:1px solid #f8f8f8;transition:background 0.2s}
+    .cart-item:hover{background:#fafafa}
+    .cart-item:last-child{border-bottom:none}
+    .cart-item-img{width:64px;height:64px;border-radius:10px;object-fit:cover;background:#f5f5f5;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.8rem;overflow:hidden}
+    .cart-item-img img{width:100%;height:100%;object-fit:cover;border-radius:10px}
+    .cart-item-info{flex:1;min-width:0}
+    .cart-item-name{font-weight:700;font-size:0.95rem;margin-bottom:0.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .cart-item-unit{color:#888;font-size:0.8rem}
+    .cart-item-price{color:var(--red);font-weight:700;font-size:0.9rem;margin-top:0.2rem}
+    .cart-item-controls{display:flex;align-items:center;gap:0.5rem;flex-shrink:0}
+    .qty-btn{width:32px;height:32px;border:2px solid #eee;border-radius:8px;background:white;cursor:pointer;font-size:1.1rem;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all 0.2s;line-height:1}
+    .qty-btn:hover{border-color:var(--red);background:#fff0f0;color:var(--red)}
+    .qty-display{width:36px;text-align:center;font-weight:700;font-size:0.95rem}
+    .remove-btn{width:32px;height:32px;border:none;background:#fff0f0;color:var(--red);border-radius:8px;cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;margin-left:0.25rem}
+    .remove-btn:hover{background:var(--red);color:white}
+    .cart-item-total{font-weight:800;color:var(--text);font-size:0.9rem;min-width:60px;text-align:right}
+
+    /* Summary Card */
+    .summary-card{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:1.5rem;position:sticky;top:80px}
+    .summary-title{font-weight:700;font-size:1rem;margin-bottom:1.25rem;border-bottom:2px solid #f5f5f5;padding-bottom:0.75rem}
+    .summary-row{display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;font-size:0.9rem}
+    .summary-row.total{font-weight:800;font-size:1.1rem;color:var(--red);border-top:2px solid #f0f0f0;margin-top:0.5rem;padding-top:1rem}
+    .summary-divider{height:1px;background:#f5f5f5;margin:0.5rem 0}
+
+    /* Customer Info */
+    .customer-section{margin-top:1.25rem;border-top:2px solid #f5f5f5;padding-top:1.25rem}
+    .customer-section h3{font-size:0.9rem;font-weight:700;margin-bottom:0.75rem;color:var(--text)}
+    .inp{width:100%;padding:0.7rem 0.9rem;border:2px solid #eee;border-radius:10px;font-size:0.9rem;font-family:inherit;outline:none;transition:border-color 0.2s;margin-bottom:0.75rem}
+    .inp:focus{border-color:var(--red)}
+
+    .wa-btn{width:100%;padding:1rem;background:#25d366;color:white;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;transition:all 0.2s;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:0.5rem}
+    .wa-btn:hover{background:#1da851;transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,0.35)}
+    .wa-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+
+    .empty-cart{text-align:center;padding:4rem 2rem}
+    .empty-cart .icon{font-size:5rem;margin-bottom:1rem;display:block}
+    .empty-cart h2{font-size:1.5rem;font-weight:700;margin-bottom:0.75rem}
+    .empty-cart p{color:#888;margin-bottom:1.5rem}
+    .shop-btn{display:inline-block;padding:0.85rem 2rem;background:var(--grad);color:white;border-radius:12px;text-decoration:none;font-weight:700;transition:all 0.2s}
+    .shop-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(183,28,28,0.3)}
+
+    .note-info{background:#e8f5e9;border-radius:10px;padding:0.75rem;font-size:0.82rem;color:#1b5e20;margin-top:0.75rem;line-height:1.5}
+
+    /* Footer */
+    .foot{background:var(--grad);color:white;text-align:center;padding:1.5rem 1rem;font-size:0.85rem;margin-top:auto}
+
+    @media(max-width:768px){
+      .cart-layout{grid-template-columns:1fr}
+      .summary-card{position:static}
+      .cart-item{flex-wrap:wrap}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="top">
+    <a href="/" class="logo">🏪 Umiya Grocery</a>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/login.html" id="nav-login-link">Login</a>
+      <span id="nav-user-info" style="display:none;align-items:center;gap:0.5rem">
+        <span id="nav-user-name" style="font-weight:600;font-size:0.9rem"></span>
+        <a href="#" onclick="Auth.logout()" style="color:rgba(255,255,255,0.7);font-size:0.8rem">(Logout)</a>
+      </span>
+      <a href="/cart.html" class="cart-link">
+        🛒<span class="cart-badge" id="cart-badge" style="display:none">0</span>
+      </a>
+    </nav>
+  </header>
+
+  <div class="contact-banner">
+    <span class="phone">📞 +91-98259-19650</span>
+    &nbsp;|&nbsp; 🕒 Mon–Sat 9AM–8PM &nbsp;|&nbsp; 📍 Ahmedabad
+  </div>
+
+  <div class="content">
+    <h1 class="page-title">🛒 Your <span>Cart</span></h1>
+
+    <!-- Empty state (shown when cart is empty) -->
+    <div class="empty-cart" id="empty-cart" style="display:none">
+      <span class="icon">🛒</span>
+      <h2>Your cart is empty</h2>
+      <p>Browse our products and add items to your cart</p>
+      <a href="/" class="shop-btn">🛍️ Start Shopping</a>
+    </div>
+
+    <!-- Cart content -->
+    <div class="cart-layout" id="cart-content">
+      <!-- Items -->
+      <div class="cart-items-card">
+        <div class="cart-items-header">
+          <div class="cart-items-title">Items in Cart (<span id="item-count">0</span>)</div>
+          <button class="clear-btn" onclick="clearCart()">🗑️ Clear All</button>
+        </div>
+        <div id="cart-items-list"></div>
+      </div>
+
+      <!-- Summary -->
+      <div class="summary-card">
+        <div class="summary-title">📋 Order Summary</div>
+        <div id="summary-rows"></div>
+        <div class="summary-divider"></div>
+        <div class="summary-row total">
+          <span>Total Amount</span>
+          <span id="total-amount">₹0</span>
+        </div>
+
+        <div class="customer-section">
+          <h3>👤 Your Details (for WhatsApp order)</h3>
+          <input class="inp" type="text" id="customer-name" placeholder="Your full name *" required/>
+          <input class="inp" type="tel" id="customer-phone" placeholder="Your phone number *" required/>
+          <input class="inp" type="text" id="customer-note" placeholder="Special instructions (optional)"/>
+        </div>
+
+        <button class="wa-btn" onclick="sendWhatsApp()" id="send-btn">
+          💬 Send Order on WhatsApp
+        </button>
+        <div class="note-info">
+          📱 This will open WhatsApp with your order details sent to the shopkeeper at <strong>9825919650</strong>. They will reply with your pickup time.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    © 2025 Umiya Wholesales and Retail Hub · 📞 +91-98259-19650 · 📍 Ahmedabad, Gujarat
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    const SHOPKEEPER_PHONE = '919825919650';
+
+    function renderCart() {
+      const cart = Cart.get();
+      const itemCount = document.getElementById('item-count');
+      const cartContent = document.getElementById('cart-content');
+      const emptyCart = document.getElementById('empty-cart');
+
+      if (cart.length === 0) {
+        cartContent.style.display = 'none';
+        emptyCart.style.display = 'block';
+        return;
+      }
+
+      cartContent.style.display = 'grid';
+      emptyCart.style.display = 'none';
+      itemCount.textContent = cart.reduce((s, i) => s + i.quantity, 0);
+
+      // Render items
+      document.getElementById('cart-items-list').innerHTML = cart.map(item => `
+        <div class="cart-item" id="item-${item._id}">
+          <div class="cart-item-img">
+            ${item.image ? `<img src="${item.image}" alt="${item.name}" onerror="this.style.display='none'"/>` : '🛍️'}
+          </div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-unit">${item.unit || 'per kg'}</div>
+            <div class="cart-item-price">₹${item.price} each</div>
+          </div>
+          <div class="cart-item-controls">
+            <button class="qty-btn" onclick="changeQty('${item._id}', ${item.quantity - 1})">−</button>
+            <span class="qty-display">${item.quantity}</span>
+            <button class="qty-btn" onclick="changeQty('${item._id}', ${item.quantity + 1})">+</button>
+            <button class="remove-btn" onclick="removeItem('${item._id}')" title="Remove">✕</button>
+          </div>
+          <div class="cart-item-total">₹${item.price * item.quantity}</div>
+        </div>`).join('');
+
+      // Render summary rows
+      document.getElementById('summary-rows').innerHTML = cart.map(item => `
+        <div class="summary-row">
+          <span>${item.name} x${item.quantity}</span>
+          <span>₹${item.price * item.quantity}</span>
+        </div>`).join('');
+
+      const total = Cart.total();
+      document.getElementById('total-amount').textContent = '₹' + total;
+    }
+
+    function changeQty(id, qty) {
+      Cart.updateQty(id, qty);
+      renderCart();
+    }
+
+    function removeItem(id) {
+      Cart.remove(id);
+      renderCart();
+    }
+
+    function clearCart() {
+      if (!confirm('Remove all items from cart?')) return;
+      Cart.clear();
+      renderCart();
+    }
+
+    async function sendWhatsApp() {
+      const name = document.getElementById('customer-name').value.trim();
+      const phone = document.getElementById('customer-phone').value.trim();
+      const note = document.getElementById('customer-note').value.trim();
+
+      if (!name) { alert('Please enter your name'); document.getElementById('customer-name').focus(); return; }
+      if (!phone || phone.length < 10) { alert('Please enter a valid 10-digit phone number'); document.getElementById('customer-phone').focus(); return; }
+
+      const cart = Cart.get();
+      if (cart.length === 0) { alert('Your cart is empty!'); return; }
+
+      const total = Cart.total();
+
+      // Build WhatsApp message
+      const itemLines = cart.map(i => `• ${i.name} x${i.quantity} (${i.unit}) — ₹${i.price * i.quantity}`).join('\n');
+      const message = [
+        '🛒 *New Order – Umiya Grocery*',
+        '',
+        '📋 *Items Ordered:*',
+        itemLines,
+        '',
+        `💰 *Total: ₹${total}*`,
+        '',
+        `👤 *Customer:* ${name}`,
+        `📞 *Phone:* ${phone}`,
+        note ? `📝 *Note:* ${note}` : '',
+        '',
+        'Please confirm pickup time. Thank you! 🙏'
+      ].filter(l => l !== undefined).join('\n').replace(/\n\n\n/g, '\n\n');
+
+      // Save order to database
+      const orderData = {
+        customerName: name,
+        customerPhone: phone,
+        items: cart.map(i => ({
+          productId: i._id,
+          name: i.name,
+          price: i.price,
+          unit: i.unit || 'per kg',
+          quantity: i.quantity,
+          subtotal: i.price * i.quantity
+        })),
+        totalAmount: total,
+        note
+      };
+      await OrderAPI.save(orderData);
+
+      // Open WhatsApp
+      const waUrl = `https://wa.me/${SHOPKEEPER_PHONE}?text=${encodeURIComponent(message)}`;
+      window.open(waUrl, '_blank');
+
+      // Clear cart after sending
+      Cart.clear();
+      renderCart();
+      alert('✅ Your order has been sent on WhatsApp! The shopkeeper will reply with pickup time.');
+    }
+
+    // Auto-fill from logged-in user
+    const user = Auth.getUser();
+    if (user) {
+      document.getElementById('customer-name').value = user.name || '';
+      document.getElementById('customer-phone').value = user.phone || '';
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>
