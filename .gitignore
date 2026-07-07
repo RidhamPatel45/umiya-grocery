@@ -8,6 +8,8 @@ frontend/.next/
 
 # Env file containing credentials
 .env
+.env.local
+frontend/.env.local
 
 # Logs
 logs

@@ -40,6 +40,11 @@ app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/webhooks', webhookRoutes);
 
+// Root health check
+app.get('/', (_req, res) => {
+  res.status(200).json({ message: "Umiya API is running successfully." });
+});
+
 // ── Global Error Handler ──────────────────────────────────────────────────────
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.error(`[Error] ${err.message}`);

@@ -98,7 +98,7 @@ async function runTests() {
       description: 'Premium quality long-grain aged aromatic basmati rice.',
       price: 120.50,
       stock: 150,
-      images: ['https://example.com/images/basmati.jpg'],
+      images: ['/images/basmati.png'],
     });
     const savedProduct = await validProduct.save();
     console.log('✅ Successfully created a valid product.');
@@ -112,7 +112,7 @@ async function runTests() {
         description: 'Test description',
         price: -10,
         stock: 50,
-        images: ['https://example.com/images/basmati.jpg'],
+        images: ['/images/basmati.png'],
       });
       await negativePriceProduct.save();
       throw new Error('Product schema should have rejected negative price');
@@ -130,7 +130,7 @@ async function runTests() {
         description: 'Test description',
         price: 50,
         stock: -5,
-        images: ['https://example.com/images/basmati.jpg'],
+        images: ['/images/basmati.png'],
       });
       await negativeStockProduct.save();
       throw new Error('Product schema should have rejected negative stock');
@@ -171,7 +171,7 @@ async function runTests() {
         description: 'Chakki fresh whole wheat flour for soft rotis.',
         price: 260.00,
         stock: 80,
-        images: ['https://example.com/images/atta.jpg'],
+        images: ['/images/atta.png'],
       },
       {
         name: 'Refined Sunflower Oil',
@@ -180,7 +180,7 @@ async function runTests() {
         description: 'Healthy and light refined sunflower cooking oil.',
         price: 180.00,
         stock: 200,
-        images: ['https://example.com/images/oil.jpg'],
+        images: ['/images/oil.png'],
       }
     ]);
 
